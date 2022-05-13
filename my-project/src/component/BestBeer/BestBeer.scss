@@ -1,0 +1,43 @@
+.card-content {
+  border: 2px solid maroon;
+  display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 450px;
+  width: 350px;
+  position: relative;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  margin-top: 20px;
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--pic {
+      height: 200px;
+    }
+  }
+}
+
+.card-content__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+
+  &--desc {
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  &--name {
+    font-size: larger;
+  }
+}
