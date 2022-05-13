@@ -10,15 +10,15 @@
 
 .beer-container {
   display: flex;
-  width: 1500px;
+  width: 2500px;
   height: 1000px;
   justify-content: left;
   border: 10px solid rgb(125, 42, 42);
-  background-color: $color-primary;
+  background-color: rgb(170, 228, 248);
 
   &__nav {
     border: 5px solid $color-primary;
-    width: 300px;
+    width: 600px;
   }
   &__content {
     border: 5px solid $color-secondary;
