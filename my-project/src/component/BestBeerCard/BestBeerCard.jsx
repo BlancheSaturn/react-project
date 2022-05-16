@@ -1,7 +1,7 @@
 import React from "react";
-import "./BestBeer.scss";
+import "./BestBeerCard.scss";
 
-const BestBeer = ({ imgBeer, name, info }) => {
+const BestBeerCard = ({ imgBeer, name, info }) => {
   return (
     <section>
       <div className="card-content">
@@ -17,4 +17,4 @@ const BestBeer = ({ imgBeer, name, info }) => {
   );
 };
 
-export default BestBeer;
+export default BestBeerCard;

@@ -1,13 +1,20 @@
+import React, { useState } from "react";
 import "./App.scss";
 import beer from "./data/beer";
-import BestBeer from "./component/BestBeer/BestBeer";
-import SearchBeers from "./containers/SearchBeers/SearchBeers";
+import BestBeerCard from "./component/BestBeerCard/BestBeerCard";
+import SearchBox from "./component/SearchBox/SearchBox";
+import NavBar from "./component/NavBar/NavBar";
 
 const App = () => {
+  const [searchWords, setSearchWords] = useState("");
+  const handleInput = (event) => {
+    setSearchWords(event.target.value);
+  };
+
   const beerCardsJSX = beer.map((card, id) => {
     return (
       // imgBeer, name, info
-      <BestBeer
+      <BestBeerCard
         key={card + id}
         imgBeer={card.image_url}
         name={card.name}
@@ -21,8 +28,12 @@ const App = () => {
       <section className="beer-container">
         <div className="beer-container__nav">
           <section className="search">
-            <h2 className="search__heading">Search</h2>
-            <SearchBeers beerArr={beer} />
+            <NavBar heading={"Search"} />
+            <SearchBox
+              label={"beers"}
+              searchWords={searchWords}
+              handleInput={handleInput}
+            />
           </section>
         </div>
         <div className="beer-container__content">{beerCardsJSX}</div>

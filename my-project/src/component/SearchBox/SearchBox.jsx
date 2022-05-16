@@ -1,9 +1,20 @@
 import React from "react";
 
-import "./Search.scss";
+import "./SearchBox.scss";
 
-const Search = ({ label, searchWord, handleInput }) => {
+const NavBox = ({ label, searchWords, handleInput, beerArr }) => {
   const capitalizedLabel = label[0].toUpperCase() + label.slice(1);
+
+  const filteredBeers = beerArr.filter((beer) => {
+    const beerNameLower = beer.name.toLowerCase();
+    const searchWordsLower = searchWords.toLocaleLowerCase();
+
+    if (beerNameLower.includes(searchWordsLower)) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   return (
     <form className="search-box">
@@ -14,12 +25,13 @@ const Search = ({ label, searchWord, handleInput }) => {
       <input
         type="text"
         name={label}
-        value={searchWord}
+        value={searchWords}
         onInput={handleInput}
         className="search-box__input"
+        beerArr={filteredBeers}
       />
     </form>
   );
 };
 
-export default Search;
+export default NavBox;
