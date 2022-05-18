@@ -1,0 +1,17 @@
+.search-box {
+  padding: 10px;
+
+  &__input {
+    margin-left: 10px;
+    height: 40px;
+    width: 200px;
+    border: 5px solid yellow;
+    border-radius: 50px;
+  }
+
+  &__label {
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+}

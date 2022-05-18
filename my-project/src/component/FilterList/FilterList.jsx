@@ -1,12 +1,9 @@
 import React from "react";
-import SearchBox from "../SearchBox/SearchBox";
-import FilterList from "../FilterList/FilterList";
-import "./NavBar.scss";
+import FilterItem from "../FiltersItem/FilterItem";
 
-const NavBar = ({
-  handleInput,
-  setBeers,
-  searchWords,
+import "./FilterList.scss";
+
+const FilterList = ({
   handleInputChange,
   setFilteredHighAlc,
   setFilteredAcidity,
@@ -17,18 +14,14 @@ const NavBar = ({
 }) => {
   return (
     <div>
-      <h2 className="search-heading">Search</h2>
-      <SearchBox
-        label={"Beers"}
-        searchWords={searchWords}
-        handleInput={handleInput}
-        setBeers={setBeers}
-      />
-      <FilterList
+      <FilterItem
+        label1={"High ABV(>6.0%)"}
+        label2={"Classic Range"}
+        label3={"Acidic(ph < 4)"}
+        onChange={handleInputChange}
         filterHighAlc={filterHighAlc}
         filterAcidity={filterAcidity}
         filterClassicRange={filterClassicRange}
-        handleInputChange={handleInputChange}
         setFilteredHighAlc={setFilteredHighAlc}
         setFilteredAcidity={setFilteredAcidity}
         setFilteredClassicRange={setFilteredClassicRange}
@@ -36,4 +29,4 @@ const NavBar = ({
     </div>
   );
 };
-export default NavBar;
+export default FilterList;
