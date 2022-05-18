@@ -18,6 +18,7 @@ const FilterList = ({
         label1={"High ABV(>6.0%)"}
         label2={"Classic Range"}
         label3={"Acidic(ph < 4)"}
+        id={"highAlcohol"}
         onChange={handleInputChange}
         filterHighAlc={filterHighAlc}
         filterAcidity={filterAcidity}

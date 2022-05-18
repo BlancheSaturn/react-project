@@ -5,10 +5,11 @@ import NavBar from "./component/NavBar/NavBar";
 
 import beer from "./data/beer";
 
+// NOTE - SEARCH FUNCTIONALITY WAS WORKING FINE WHILE TRYING TO FIX THE FILTER I'VE BROKEN IT.
 const App = () => {
   const [searchWords, setSearchWords] = useState("");
   const [beers, setBeers] = useState([]);
-  const [filterHighAlc, setFilteredHighAlc] = useState(false);
+  const [filterHighAlc, setFilteredHighAlc] = useState("");
   const [filterAcidity, setFilteredAcidity] = useState(false);
   const [filterClassicRange, setFilteredClassicRange] = useState(false);
 
@@ -20,6 +21,18 @@ const App = () => {
     const beersLower = beer.name.toLowerCase();
     const searchWordsLower = searchWords.toLocaleLowerCase();
 
+    if (beer.abv > 6.0) {
+      return true;
+    }
+
+    if (beer.ph < 4) {
+      return true;
+    }
+
+    if (beer.first_brewed !== "04/2008" && beer.first_brewed !== "09/2007") {
+      return true;
+    }
+
     if (beersLower.includes(searchWordsLower)) {
       return true;
     } else {
@@ -28,6 +41,7 @@ const App = () => {
   });
 
   const handleInputChange = (event) => {
+    console.log(event);
     if (event.target.id === "highAlcohol") {
       setFilteredHighAlc(event.target.checked);
     }
@@ -40,19 +54,19 @@ const App = () => {
     }
   };
 
-  const filterHighAlcohol = filteredBeers.filter((beer) => beer.abv);
-  if (beer.abv > 6.0) {
-    return true;
-  }
-  const filterAcidic = filteredBeers.filter((beer) => beer.pv);
-  if (beer.ph < 4) {
-    return true;
-  }
+  // const filterHighAlcohol = filteredBeers.filter((beer) => beer.abv);
+  // if (beer.abv > 6.0) {
+  //   return true;
+  // }
+  // const filterAcidic = filteredBeers.filter((beer) => beer.pv);
+  // if (beer.ph < 4) {
+  //   return true;
+  // }
 
-  const filterClassic = filteredBeers.filter((beer) => beer.first_brewed);
-  if (beer.first_brewed <= "04/2008") {
-    return true;
-  }
+  // const filterClassic = filteredBeers.filter((beer) => beer.first_brewed);
+  // if (beer.first_brewed <= "04/2008") {
+  //   return true;
+  // }
 
   return (
     <div className="app">
@@ -60,6 +74,7 @@ const App = () => {
         <div className="beer-container__nav">
           <section className="search">
             <NavBar
+              id={"highAlcohol"}
               handleInput={handleInput}
               setBeers={setBeers}
               searchWords={searchWords}
@@ -75,9 +90,6 @@ const App = () => {
         </div>
         <div className="beer-container__content">
           {beers && <BestBeerCard beersArr={filteredBeers} />}
-          {/* {filterHighAlc && <BestBeerCard beersArr={filterHighAlcohol} />}
-          {filterAcidity && <BestBeerCard beersArr={filterAcidic} />}
-          {filterClassicRange && <BestBeerCard beersArr={filterClassic} />} */}
         </div>
       </section>
     </div>

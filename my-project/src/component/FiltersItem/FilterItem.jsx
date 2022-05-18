@@ -20,7 +20,7 @@ const FilterItem = ({
         type="checkbox"
         name={label1}
         onChange={onChange}
-        value={value}
+        value={"highAlcohol"}
         filterHighAlc={filterHighAlc}
         className="filter-list__checkbox"
       />
@@ -31,7 +31,7 @@ const FilterItem = ({
         type="checkbox"
         name={label2}
         onChange={onChange}
-        value={value}
+        value={"classicRange"}
         filterAcidity={filterAcidity}
         className="filter-list__checkbox"
       />
@@ -42,7 +42,7 @@ const FilterItem = ({
         type="checkbox"
         name={label3}
         onChange={onChange}
-        value={value}
+        value={"phAcidity"}
         filterClassicRange={filterClassicRange}
         className="filter-list__checkbox"
       />
