@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import BestBeerCard from "./component/BestBeerCard/BestBeerCard";
 import NavBar from "./component/NavBar/NavBar";
@@ -21,18 +21,6 @@ const App = () => {
     const beersLower = beer.name.toLowerCase();
     const searchWordsLower = searchWords.toLocaleLowerCase();
 
-    if (beer.abv > 6.0) {
-      return true;
-    }
-
-    if (beer.ph < 4) {
-      return true;
-    }
-
-    if (beer.first_brewed !== "04/2008" && beer.first_brewed !== "09/2007") {
-      return true;
-    }
-
     if (beersLower.includes(searchWordsLower)) {
       return true;
     } else {
@@ -54,19 +42,41 @@ const App = () => {
     }
   };
 
-  // const filterHighAlcohol = filteredBeers.filter((beer) => beer.abv);
-  // if (beer.abv > 6.0) {
-  //   return true;
-  // }
-  // const filterAcidic = filteredBeers.filter((beer) => beer.pv);
-  // if (beer.ph < 4) {
-  //   return true;
-  // }
+  useEffect(() => {
+    getBeers(filterHighAlc, filterAcidity, filterClassicRange);
+  }, [filterHighAlc, filterAcidity, filterClassicRange]);
 
-  // const filterClassic = filteredBeers.filter((beer) => beer.first_brewed);
-  // if (beer.first_brewed <= "04/2008") {
-  //   return true;
-  // }
+  const baseUrl = "https://api.punkapi.com/v2/beers";
+
+  const getBeers = async (filterHighAlc, filterClassicRange) => {
+    let queryParameter = "";
+    let url = "";
+    if (filterHighAlc) {
+      queryParameter += "abv_gt=6";
+    }
+    if (filterClassicRange) {
+      if (queryParameter) {
+        queryParameter += "&";
+      }
+      queryParameter += "brewed_before=01-2010";
+    }
+    console.log(queryParameter);
+    if (queryParameter) {
+      url = baseUrl + "?" + queryParameter;
+    } else {
+      url = baseUrl + "/";
+    }
+
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    setBeers(data);
+  };
+
+  const filterAcidic = filteredBeers.filter((beer) => beer.pv);
+  if (beer.ph < 4) {
+    return true;
+  }
 
   return (
     <div className="app">
@@ -78,9 +88,7 @@ const App = () => {
               handleInput={handleInput}
               setBeers={setBeers}
               searchWords={searchWords}
-              filterHighAlc={filterHighAlc}
               filterAcidity={filterAcidity}
-              filterClassicRange={filterClassicRange}
               handleInputChange={handleInputChange}
               setFilteredHighAlc={setFilteredHighAlc}
               setFilteredAcidity={setFilteredAcidity}
@@ -90,6 +98,9 @@ const App = () => {
         </div>
         <div className="beer-container__content">
           {beers && <BestBeerCard beersArr={filteredBeers} />}
+          {!searchWords && filterAcidity && (
+            <BestBeerCard beersArr={filterAcidic} />
+          )}
         </div>
       </section>
     </div>
