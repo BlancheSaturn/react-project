@@ -144,9 +144,11 @@ I can see that you have prioritized the functionality which makes sense, when yo
   - You will want to move the contents of the `my-project` folder out of that folder and delete it.
 
 Currently it looks like this.
+
 <img src="./current-project.PNG" width=200/>
 
 It should be.
+
 <img src="./project.PNG"  width=200/>
 
 Let me know if you need a hand as you never want git to watch `node_modules` as they are quite big. This is why you have the `.gitignore` file.
