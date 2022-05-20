@@ -153,7 +153,7 @@ It should be.
 
 Let me know if you need a hand as you never want git to watch `node_modules` as they are quite big. This is why you have the `.gitignore` file.
 
-[gitignore]("https://www.freecodecamp.org/news/gitignore-what-is-it-and-how-to-add-to-repo/#:~:text=gitignore%20file%20is%20a%20text,all%20of%20your%20Git%20repositories")
+[Have a look at this for more info]("https://www.freecodecamp.org/news/gitignore-what-is-it-and-how-to-add-to-repo/")
 
 ---
 
